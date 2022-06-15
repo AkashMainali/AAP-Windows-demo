@@ -1,0 +1,9 @@
+---
+- hosts: all
+  gather_facts: no
+  become_user: yes
+  tasks:
+
+   - name: Include role to install windows service
+     include_role:
+        name: install_windows_service

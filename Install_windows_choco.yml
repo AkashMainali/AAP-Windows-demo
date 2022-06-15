@@ -1,0 +1,8 @@
+---
+- hosts: all
+  become_user: yes
+  tasks:
+
+   - name: Include role to install windows service
+     include_role:
+        name: install_choco_windows
