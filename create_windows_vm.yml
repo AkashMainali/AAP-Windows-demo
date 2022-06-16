@@ -1,16 +1,7 @@
 ---
 - hosts: localhost
   gather_facts: no
-  vars:
-    pool_dir: "/var/lib/libvirt/images"
-    vm: ansible-created-vm
-    vcpus: 2
-    ram_mb: 2048
-    cleanup: no
-    net: default
-    ssh_pub_key: "/home/rgerardi/.ssh/id_rsa.pub"
-
   tasks:
-    - name: VM Provision role
-      include_role:
-        name: create_vm
+   - name: Include role to create Windows VM
+     include_role:
+       name: create_win_vm
