@@ -2,11 +2,11 @@
 # tasks file for install_choco_windows
 - name: Call task file to install chocolatey
   include_tasks: install_chocolatey.yml
-  
+
 - name: Install git
   win_chocolatey:
     name: git
-    state: present
+    state: absent
 
 - name: Upgrade installed packages
   win_chocolatey:
