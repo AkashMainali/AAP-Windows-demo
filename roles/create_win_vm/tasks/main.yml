@@ -10,7 +10,7 @@
       windows_template: "windows_2019_template"
   when: vm_template == "Windows_2019"
 
-- name: Provision RHEL machine
+- name: Provision Windows machine
   vmware_guest:
     folder: "RHEL-Automation"
     template: "{{ windows_template }}"
@@ -27,10 +27,12 @@
        dns_servers:
          - 192.168.2.201
     customization:
-       hostname: '"{{ vm_name }}".iisl.lab'
+       dns_suffix:
+         - "crucible.iisl.lab"
+         - "iisl.lab"
        dns_servers:
-         - 192.168.2.201
-       domain: "iisl.lab"
+         - '192.168.2.201'
+       hostname: '"{{ vm_name }}".iisl.lab'
        state: started
     wait_for_ip_address: yes
     wait_for_customization: yes
