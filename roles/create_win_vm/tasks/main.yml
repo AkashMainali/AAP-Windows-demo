@@ -26,13 +26,13 @@
        domain: "{{ vm_name }}.iisl.lab"
        dns_servers:
          - 192.168.2.201
-    # customization:
-    #    dns_suffix:
-    #      - "crucible.iisl.lab"
-    #      - "iisl.lab"
-    #    dns_servers:
-    #      - '192.168.2.201'
-    #    domain: 'iisl.lab'
+    customization:
+       dns_suffix:
+         - "crucible.iisl.lab"
+         - "iisl.lab"
+       dns_servers:
+         - '192.168.2.201'
+       domain: 'iisl.lab'
        state: started
     wait_for_ip_address: yes
     wait_for_customization: yes
