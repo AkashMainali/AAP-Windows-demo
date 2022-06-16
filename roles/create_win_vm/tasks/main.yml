@@ -32,7 +32,7 @@
          - "iisl.lab"
        dns_servers:
          - '192.168.2.201'
-       hostname: '"{{ vm_name }}".iisl.lab'
+       domain: 'iisl.lab'
        state: started
     wait_for_customization: yes
   register: windows_vm
