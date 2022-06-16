@@ -3,7 +3,7 @@
 - name: "Create a user"
   community.windows.win_domain_user:
     firstname: "{{ ad_firstname }}"
-    surname: "{{ ad_surname }}"
+    surname: "{{ ad_lastname }}"
     name: "{{ ad_firstname }}"
     password: "{{ ad_password }}"
     groups: Administrators

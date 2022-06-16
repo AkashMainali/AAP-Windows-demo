@@ -6,7 +6,7 @@
       debug:
         msg: |
           Success on:
-          - Creating {{ad_user}} with Administrative right
+          - Creating {{ ad_user }} with Administrative right
           - Creating the following folders for the {{ad_user}}:
                    - 'C:\Users\{{ ad_firstname }}\Desktop\ansible'
                    - 'C:\Users\{{ ad_firstname }}\Desktop\ansible\collections'
