@@ -1,0 +1,17 @@
+---
+- hosts: all
+  become_user: yes
+  tasks:
+    - name: Display the Success result
+      debug:
+        msg: |
+          Success on:
+          - Creating {{ad_user}} with Administrative right
+          - Creating the following folders for the {{ad_user}}:
+                   - 'C:\Users\{{ ad_firstname }}\Desktop\ansible'
+                   - 'C:\Users\{{ ad_firstname }}\Desktop\ansible\collections'
+                   - 'C:\Users\{{ ad_firstname }}\Desktop\ansible\roles'
+          - Install following using Windows Chocolatey Package Manager:
+                   - GIT
+                   - Notepad++
+          - Updated all the packages managed by Windows Chocolatey Package Manager

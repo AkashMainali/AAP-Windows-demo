@@ -1,7 +1,3 @@
----
-- host: all
-  gather_facts: no
-  tasks:
     - name: Display the Success result
       debug:
         msg: |
