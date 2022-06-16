@@ -1,2 +1,11 @@
 ---
 # tasks file for install_choco_windows
+- name: Install git
+  win_chocolatey:
+    name: git
+    state: present
+
+- name: Upgrade installed packages
+  win_chocolatey:
+    name: all
+    state: latest
