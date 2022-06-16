@@ -34,7 +34,6 @@
          - '192.168.2.201'
        hostname: '"{{ vm_name }}".iisl.lab'
        state: started
-    wait_for_ip_address: yes
     wait_for_customization: yes
   register: windows_vm
 
