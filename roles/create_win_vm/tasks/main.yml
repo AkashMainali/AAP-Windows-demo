@@ -26,13 +26,13 @@
        domain: "{{ vm_name }}.iisl.lab"
        dns_servers:
          - 192.168.2.201
-    customization:
-       dns_suffix:
-         - "crucible.iisl.lab"
-         - "iisl.lab"
-       dns_servers:
-         - '192.168.2.201'
-       domain: 'iisl.lab'
+    # customization:
+    #    dns_suffix:
+    #      - "crucible.iisl.lab"
+    #      - "iisl.lab"
+    #    dns_servers:
+    #      - '192.168.2.201'
+    #    domain: 'iisl.lab'
        state: started
     wait_for_ip_address: yes
     wait_for_customization: yes
@@ -40,7 +40,7 @@
 
 - name: debug ip address of vm created
   set_fact:
-    linux_vm_ip: "{{ windows_vm.instance.hw_eth0.ipaddresses[0] }}"  #hel_vm.instance.ipv4
+    windows_vm_ip: "{{ windows_vm.instance.hw_eth0.ipaddresses[0] }}"  #hel_vm.instance.ipv4
 
 - name: Displaying success message
   debug:
