@@ -5,16 +5,12 @@
 
 - name: Install git
   win_chocolatey:
-    name: git
+    name: "{{ item }}"
     state: absent
+  loop:
+   - git
+   - notepadplusplus
 
-- name: install and pin Notepad++ at 7.6.3
-  win_chocolatey:
-    name: notepadplusplus
-    version: 7.6.3
-    pinned: yes
-    state: present
-    
 - name: Upgrade installed packages
   win_chocolatey:
     name: all
