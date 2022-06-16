@@ -5,5 +5,6 @@
     path: "{{ item }}"
     state: directory
   with_items:
-   - /home/{{linux_user}}/ansible
-   - /home/{{linux_user}}/temp_files
+   - 'C:\Users\{{ ad_firstname }}\Desktop\ansible'
+   - 'C:\Users\{{ ad_firstname }}\Desktop\ansible\collections'
+   - 'C:\Users\{{ ad_firstname }}\Desktop\ansible\roles'
