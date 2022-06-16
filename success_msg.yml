@@ -6,8 +6,8 @@
       vars:
         msg: |
           Success on:
-          - Creating {{ ad_firstname }} with Administrative right
-          - Creating the following folders for the {{ad_firstname}}:
+          - Creating {{ ad_firstname }} user with Administrative right
+          - Creating the following folders for the {{ad_firstname}} user:
                    - 'C:\Users\{{ ad_firstname }}\Desktop\ansible'
                    - 'C:\Users\{{ ad_firstname }}\Desktop\ansible\collections'
                    - 'C:\Users\{{ ad_firstname }}\Desktop\ansible\roles'
