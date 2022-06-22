@@ -8,21 +8,21 @@
     name:
       - chocolatey-core.extension
       - chocolatey-windowsupdate.extension
-    state: present
+    state: latest
 
 - name: Install git and notepad++
   win_chocolatey:
     name:
     - git
     - notepadplusplus
-    state: present
+    state: lastest
 
 - name: Install VS Code and PowerShell Preview
   win_chocolatey:
     name:
     - vscode.install
     - powershell-preview
-    state: present
+    state: latest
 
 - name: Upgrade installed packages
   win_chocolatey:
