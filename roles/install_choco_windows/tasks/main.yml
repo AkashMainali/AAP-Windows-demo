@@ -15,16 +15,16 @@
     name:
     - git
     - notepadplusplus
-    state: latest
+    state: absent
 
 - name: Install VS Code and PowerShell Preview
   win_chocolatey:
     name:
     - vscode.install
     - powershell-preview
-    state: latest
+    state: absent
 
-- name: Upgrade installed packages
-  win_chocolatey:
-    name: all
-    state: latest
+# - name: Upgrade installed packages
+#   win_chocolatey:
+#     name: all
+#     state: latest
