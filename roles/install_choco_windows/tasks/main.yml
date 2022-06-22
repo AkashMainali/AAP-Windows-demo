@@ -3,13 +3,26 @@
 - name: Call task file to install chocolatey
   include_tasks: install_chocolatey.yml
 
-- name: Install git
+- name: Install package dependencies
   win_chocolatey:
-    name: "{{ item }}"
+    name:
+      - chocolatey-core.extension
+      - chocolatey-windowsupdate.extension
     state: present
-  loop:
-   - git
-   - notepadplusplus
+
+- name: Install git and notepad++
+  win_chocolatey:
+    name:
+    - git
+    - notepadplusplus
+    state: present
+
+- name: Install VS Code and PowerShell Preview
+  win_chocolatey:
+    name:
+    - vscode.install
+    - powershell-preview
+    state: present
 
 - name: Upgrade installed packages
   win_chocolatey:
