@@ -15,7 +15,7 @@
     name:
     - git
     - notepadplusplus
-    state: lastest
+    state: latest
 
 - name: Install VS Code and PowerShell Preview
   win_chocolatey:
