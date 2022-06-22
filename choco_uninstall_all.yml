@@ -2,14 +2,14 @@
 - hosts: all
   become_user: yes
   tasks:
-    - name: Install git and notepad++
+    - name: Removing git and notepad++
       win_chocolatey:
         name:
         - git
         - notepadplusplus
         state: absent
 
-    - name: Install VS Code and PowerShell Preview
+    - name: Removing VS Code and PowerShell Preview
       win_chocolatey:
         name:
         - vscode.install
