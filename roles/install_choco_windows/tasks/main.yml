@@ -15,6 +15,7 @@
     name:
     - git
     - notepadplusplus
+    force: yes
     state: latest
 
 - name: Install VS Code and PowerShell Preview
@@ -22,6 +23,7 @@
     name:
     - vscode.install
     - powershell-preview
+    force: yes
     state: latest
 
 # - name: Upgrade installed packages
