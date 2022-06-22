@@ -8,3 +8,4 @@
     password: "{{ ad_password }}"
     groups: Administrators
     state: present
+

@@ -6,7 +6,7 @@
 - name: Install git
   win_chocolatey:
     name: "{{ item }}"
-    state: absent
+    state: present
   loop:
    - git
    - notepadplusplus
