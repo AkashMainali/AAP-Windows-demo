@@ -2,11 +2,6 @@
   win_shell: |
     Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 
-- name: "Check for existing chocolatey install."
-  win_stat:
-    path: "{{ chocolatey_path }}/choco.exe"
-  register: chocolatey_exe
-
 - name: "Debug: Existing Chocolatey status."
   debug:
     var: chocolatey_exe
