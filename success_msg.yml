@@ -6,16 +6,16 @@
       vars:
         msg: |
           Success on:
-          - Creating {{ ad_firstname }} user with Administrative right
-          - Creating the following folders for the {{ad_firstname}} user on servers {{windows_machine}}:
+          - Creating {{ ad_firstname }} user with Administrative right on Windows AD server (winad.iisl.lab)
+          - Creating the following folders for the {{ad_firstname}} user on servers on wintest.iisl.lab and wintest2.iisl.lab:
                    - 'C:\Users\{{ ad_firstname }}\Desktop\ansible'
                    - 'C:\Users\{{ ad_firstname }}\Desktop\ansible\collections'
                    - 'C:\Users\{{ ad_firstname }}\Desktop\ansible\roles'
-          - Installing following using Windows Chocolatey Package Manager {{windows_machine}}:
+          - Installing following using Windows Chocolatey Package Manager on wintest.iisl.lab and wintest2.iisl.lab:
                    - GIT
                    - Notepad++
                    - VScode
                    - Powershell-preview
-          - Updating all the packages managed by Windows Chocolatey Package Manager
+          - Updating all the packages managed by Windows Chocolatey Package Manager on on wintest.iisl.lab and wintest2.iisl.lab
       debug:
         msg: "{{ msg.split('\n')}}"
