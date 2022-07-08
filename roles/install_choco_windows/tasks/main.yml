@@ -16,6 +16,7 @@
     - git
     - notepadplusplus
     force: yes
+    validate_certs: no
     state: reinstalled
 
 - name: Install VS Code and PowerShell Preview
@@ -24,6 +25,7 @@
     - vscode
     - powershell-preview
     force: yes
+    validate_certs: no
     state: reinstalled
 
 # - name: Upgrade installed packages
