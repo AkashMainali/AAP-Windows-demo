@@ -12,12 +12,14 @@
 
    - name: Get the hostname to display on success message
      set_fact:
-       win_server: "{{ ansible_hostname }}"
+       win_server: "{{ inventory_hostname }}"
 
    - name: Display hostname
      debug:
-       var: "{{win_server}}"
+       var: "{{items}}"
+     loop:
+      - win_server
 
    - name: Get the hostname to display on success message
      set_stats:
-       win_machine: "{{ ansible_hostname }}"
+       win_machine: "{{ inventory_hostname }}"
