@@ -3,13 +3,13 @@
   become_user: yes
   gather_facts: no
   tasks:
-   - name: Include role to install windows service
-     include_role:
-        name: install_choco_windows
+  #  - name: Include role to install windows service
+  #    include_role:
+  #       name: install_choco_windows
 
    - name: Gather facts
      setup:
-     
+
    - name: Get the hostname to display on success message
      set_fact:
        win_server: "{{ ansible_hostname }}"
