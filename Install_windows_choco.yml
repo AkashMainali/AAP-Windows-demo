@@ -1,14 +1,18 @@
 ---
 - hosts: all
   become_user: yes
+  gather_facts: no
   tasks:
    - name: Include role to install windows service
      include_role:
         name: install_choco_windows
 
+   - name: Gather facts
+     setup:
+     
    - name: Get the hostname to display on success message
      set_fact:
-       win_server: "{{ ansible_play_host }}"
+       win_server: "{{ ansible_hostname }}"
 
    - name: Display hostname
      debug:
@@ -16,4 +20,4 @@
 
    - name: Get the hostname to display on success message
      set_stats:
-       win_machine: "{{ ansible_play_host }}"
+       win_machine: "{{ ansible_hostname }}"
