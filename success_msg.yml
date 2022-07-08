@@ -7,11 +7,11 @@
         msg: |
           Success on:
           - Creating {{ ad_firstname }} user with Administrative right
-          - Creating the following folders for the {{ad_firstname}} user:
+          - Creating the following folders for the {{ad_firstname}} user on servers {{windows_machine}}:
                    - 'C:\Users\{{ ad_firstname }}\Desktop\ansible'
                    - 'C:\Users\{{ ad_firstname }}\Desktop\ansible\collections'
                    - 'C:\Users\{{ ad_firstname }}\Desktop\ansible\roles'
-          - Installing following using Windows Chocolatey Package Manager:
+          - Installing following using Windows Chocolatey Package Manager {{windows_machine}}:
                    - GIT
                    - Notepad++
                    - VScode
