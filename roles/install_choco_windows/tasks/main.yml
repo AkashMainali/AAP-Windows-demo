@@ -16,7 +16,7 @@
     - git
     - notepadplusplus
     force: yes
-    state: present
+    state: reinstalled
 
 - name: Install VS Code and PowerShell Preview
   win_chocolatey:
@@ -24,7 +24,7 @@
     - vscode
     - powershell-preview
     force: yes
-    state: present
+    state: reinstalled
 
 # - name: Upgrade installed packages
 #   win_chocolatey:
