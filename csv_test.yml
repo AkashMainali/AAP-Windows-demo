@@ -1,8 +1,6 @@
 ---
 - hosts: localhost
   gather_facts: no
-  vars:
-    - drive_letter: O
   tasks:
     - name: Call read_csv role
       include_role: 

@@ -5,7 +5,7 @@
     msg: "{{ playbook_dir }}"
 
 - name: Read users from CSV file and return a list
-  community.general.read_csv:
+  read_csv:
     path: "{{ playbook_dir }}/roles/read_csv/files/users.csv"
     fieldnames: name,path,comment
     delimiter: ','
