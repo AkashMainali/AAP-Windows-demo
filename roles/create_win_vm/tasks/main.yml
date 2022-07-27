@@ -27,6 +27,7 @@
        dns_servers:
          - 192.168.2.201
     customization:
+       hostname: '{{ vm_name }}.iisl.lab'
        dns_suffix:
          - "crucible.iisl.lab"
          - "iisl.lab"
