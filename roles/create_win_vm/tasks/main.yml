@@ -20,9 +20,9 @@
     cluster: "Windows-Automation"
     datastore: "Demo-Datastore01"
     datacenter: "Plainview"
-    hostname: "{{ vm_name }}.iisl.lab"
-    username: "temp"
-    password: "temp"
+    hostname: "cmrv-vc01.crucible.iisl.com"
+    username: "CRUCIBLE\bmuggalla"
+    password: "Temp!234"
     hardware:
       memory_mb: 4096
       num_cpus: 2
