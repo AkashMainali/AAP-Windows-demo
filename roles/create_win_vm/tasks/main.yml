@@ -20,6 +20,7 @@
     cluster: "Windows-Automation"
     datastore: "Demo-Datastore01"
     datacenter: "Plainview"
+    esxi_hostname: "cmrv-vc01.crucible.iisl.com"
     networks:
      - name: "Windows-Automation - vLAN 102"
        type: dhcp
