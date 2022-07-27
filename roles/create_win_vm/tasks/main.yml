@@ -17,10 +17,10 @@
     validate_certs: no
     name: "{{ vm_name }}"
     state: poweredon
-    #cluster: "Windows-Automation"
+    cluster: "Windows-Automation"
     datastore: "Demo-Datastore01"
     datacenter: "Plainview"
-    esxi_host: "Windows Host"
+    hostname: "{{ vm_name }}.iisl.lab"
     hardware:
       memory_mb: 4096
       num_cpus: 2
