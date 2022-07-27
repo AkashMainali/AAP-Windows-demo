@@ -21,8 +21,8 @@
     datastore: "Demo-Datastore01"
     datacenter: "Plainview"
     hostname: "{{ vm_name }}.iisl.lab"
-    username: temp
-    password: temp
+    username: "temp"
+    password: "temp"
     hardware:
       memory_mb: 4096
       num_cpus: 2
