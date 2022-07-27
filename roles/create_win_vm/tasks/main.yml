@@ -2,7 +2,7 @@
 # tasks file for create_linux_vm
 - name: Select Windows 2016 template
   set_fact:
-      windows_template: "windows2016_template"
+      windows_template: "windows_2016_template"
   when: vm_template == "Windows_2016"
 
 - name: Select Windows 2019 template
