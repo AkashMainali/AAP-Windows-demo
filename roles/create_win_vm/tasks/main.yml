@@ -12,7 +12,7 @@
 
 - name: Provision Windows machine
   vmware_guest:
-    folder: "Windows-Automation"
+    folder: "RHEL-Automation"
     template: windows_2016_template
     validate_certs: no
     name: "{{ vm_name }}"
