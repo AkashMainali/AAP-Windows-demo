@@ -24,7 +24,7 @@
       memory_mb: 4096
       num_cpus: 2
     networks:
-     - name: "Windows-Automation - vLAN 102"
+     - name: "RHEL-Automation - vLAN 102"
        type: dhcp
        domain: "{{ vm_name }}.iisl.lab"
        dns_servers:
