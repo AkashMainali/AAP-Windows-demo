@@ -17,10 +17,9 @@
     validate_certs: no
     name: "{{ vm_name }}"
     state: poweredon
-    cluster: "Windows-Automation"
+    cluster: "cmrv-vc01.crucible.iisl.com"
     datastore: "Demo-Datastore01"
     datacenter: "Plainview"
-    esxi_hostname: "cmrv-vc01.crucible.iisl.com"
     networks:
      - name: "Windows-Automation - vLAN 102"
        type: dhcp
@@ -29,11 +28,14 @@
          - 192.168.2.201
     customization:
        hostname: '{{ vm_name }}.iisl.lab'
+       autologon: yes
        dns_suffix:
          - "crucible.iisl.lab"
          - "iisl.lab"
        domain: 'iisl.lab'
        state: started
+       runonce:
+         - powershell.exe -ExecutionPolicy Unrestricted -File C:\Windows\Temp\ConfigureRemotingForAnsible.ps1 -ForceNewSSLCert -EnableCredSSP
     wait_for_ip_address: yes
     wait_for_customization: yes
   register: windows_vm
