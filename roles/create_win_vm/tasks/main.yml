@@ -2,12 +2,12 @@
 # tasks file for create_windows_vm
 - name: Select Windows 2016 template
   set_fact:
-      windows_template: "windows2016_template"
+    windows_template: "windows2016_template"
   when: vm_template == "Windows_2016"
 
 - name: Select Windows 2019 template
   set_fact:
-      windows_template: "windows2019_template"
+    windows_template: "windows2019_template"
   when: vm_template == "Windows_2019"
 
 - name: Provision Windows machine
@@ -24,34 +24,41 @@
       memory_mb: 4096
       num_cpus: 2
     networks:
-     - name: "RHEL-Automation - vLAN 102"
-       type: dhcp
-       domain: "{{ vm_name }}.iisl.lab"
-       dns_servers:
-         - 192.168.2.201
+      - name: "RHEL-Automation - vLAN 102"
+        type: dhcp
+        domain: "{{ vm_name }}.iisl.lab"
+        dns_servers:
+          - 192.168.2.201
     customization:
-       hostname: '{{ vm_name }}.iisl.lab'
-       dns_servers:
-         - 192.168.2.201
-       autologon: yes
-       dns_suffix:
-         - "crucible.iisl.lab"
-         - "iisl.lab"
-       domain: 'iisl.lab'
-       state: started
-       runonce:
-         - powershell.exe -ExecutionPolicy Unrestricted -File C:\Windows\Temp\ConfigureRemotingForAnsible.ps1 -ForceNewSSLCert -EnableCredSSP
+      hostname: '{{ vm_name }}.iisl.lab'
+      dns_servers:
+        - 192.168.2.201
+      autologon: yes
+      dns_suffix:
+        - "crucible.iisl.lab"
+        - "iisl.lab"
+      domain: 'iisl.lab'
+      state: started
+      runonce:
+        - powershell.exe -ExecutionPolicy Unrestricted -File C:\Windows\Temp\ConfigureRemotingForAnsible.ps1 -ForceNewSSLCert -EnableCredSSP
     wait_for_ip_address: yes
     wait_for_customization: yes
   delegate_to: localhost
   register: windows_vm
 
 - name: Run powershell command to pertain windows VM IP address
-  ansible.builtin.win_shell: ipconfig
+  ansible.windows.win_command: powershell.exe -
   args:
-    executable: cmd
+    stdin: Get-NetIPAddress
   delegate_to: "{{ vm_name }}.iisl.lab"
   register: vm_info
+
+#- name: Run powershell command to pertain windows VM IP address
+#  ansible.windows.win_shell: ipconfig
+#  args:
+#    executable: cmd
+#  delegate_to: "{{ vm_name }}.iisl.lab"
+#  register: vm_info
 
 - debug:
     msg: "{{ vm_info }}"
