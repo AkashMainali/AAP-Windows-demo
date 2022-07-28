@@ -48,6 +48,9 @@
 
 - name: Run commands on guest OS to pertain IP address
   vmware_vm_shell:
+    vm_id: ansible_windows_bhanu
+    vm_username:
+    vm_password:
     vm_shell: ipconfig
   register: shell_output
 
