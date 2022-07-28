@@ -46,6 +46,15 @@
   delegate_to: localhost
   register: windows_vm
 
+- name: Check the VMware tools status until it started
+  vmware_guest_info:
+    hostname: ansible_windows_bhanu
+    username: bmuggalla@CRUCIBLE.iisl.com
+    password: Temp!234
+    datacenter: "Plainview"
+  delegate_to: localhost
+  register: info
+
 - name: Run commands on guest OS to pertain IP address
   vmware_vm_shell:
     vm_id: ansible_windows_bhanu
