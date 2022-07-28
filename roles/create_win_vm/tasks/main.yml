@@ -54,6 +54,9 @@
     datacenter: "Plainview"
   delegate_to: localhost
   register: info
+  retries: 60
+  delay: 5
+  until: info.instance.guest_tools_status == "guestToolsRunning"
 
 - name: Run commands on guest OS to pertain IP address
   vmware_vm_shell:
