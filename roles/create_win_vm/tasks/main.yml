@@ -47,7 +47,7 @@
   register: windows_vm
 
 - name: Run powershell command to pertain windows VM IP address
-  ansible.windows.win_command: powershell.exe -
+  ansible.builtin.win_command: powershell.exe -
   args:
     stdin: Get-NetIPAddress
   delegate_to: "{{ vm_name }}.iisl.lab"
