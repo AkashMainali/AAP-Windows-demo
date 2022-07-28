@@ -49,7 +49,7 @@
 - name: Run powershell command to pertain windows VM IP address
   win_shell: |
     Get-NetIPAddress
-  delegate_to: "{{ vm_name }}.iisl.lab"
+  delegate_to: wintest.iisl.lab
   register: vm_info
 
 #- name: Run powershell command to pertain windows VM IP address
