@@ -46,28 +46,37 @@
   delegate_to: localhost
   register: windows_vm
 
-- name: Check the VMware tools status until it started
-  vmware_guest_info:
-    hostname: ansible_windows_bhanu
-    username: bmuggalla@CRUCIBLE.iisl.com
-    password: Temp!234
-    datacenter: "Plainview"
-  delegate_to: localhost
-  register: info
-  retries: 60
-  delay: 5
-  until: info.instance.guest_tools_status == "guestToolsRunning"
-
-- name: Run commands on guest OS to pertain IP address
-  vmware_vm_shell:
-    vm_id: ansible_windows_bhanu
-    vm_username: bmuggalla@CRUCIBLE.iisl.com
-    vm_password: Temp!234
-    vm_shell: ipconfig
-  register: shell_output
+- name: Run powershell command to pertain windows VM IP address
+  ansible.windows.win_powershell:
+    script: |
+       ipconfig
+  delegate_to: "{{ vm_name }}.iisl.lab"
+  register: vm_info
 
 - debug:
-    msg: "{{ shell_output }}"
+    msg: "{{ vm_info }}"
+
+#- name: Check the VMware tools status until it started
+#  vmware_guest_info:
+#    hostname: ansible_windows_bhanu
+#    username: bmuggalla@CRUCIBLE.iisl.com
+#    password: Temp!234
+#    datacenter: "Plainview"
+#  register: info
+#  retries: 60
+#  delay: 5
+#  until: info.instance.guest_tools_status == "guestToolsRunning"
+
+#- name: Run commands on guest OS to pertain IP address
+#  vmware_vm_shell:
+#    vm_id: ansible_windows_bhanu
+#    vm_username: bmuggalla@CRUCIBLE.iisl.com
+#    vm_password: Temp!234
+#    vm_shell: ipconfig
+#  register: shell_output
+#
+#- debug:
+#    msg: "{{ shell_output }}"
 
 - name: debug ip address of vm created
   set_fact:
