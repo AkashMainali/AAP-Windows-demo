@@ -51,6 +51,7 @@
     hostname: cmrv-vc01.crucible.iisl.com
     username: bmuggalla@CRUCIBLE.iisl.com
     password: Temp!234
+    esxi_hostname: '{{ vm_name }}.iisl.lab'
   register: host_facts
   delegate_to: localhost
 
