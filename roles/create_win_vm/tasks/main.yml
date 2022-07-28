@@ -52,7 +52,7 @@
     username: Administrator
     password: Windowspass1!
   register: host_facts
-  delegate_to: '{{ vm_name }}.iisl.lab'
+  delegate_to: localhost
 
 - debug:
     msg: "{{ host_facts }}"
