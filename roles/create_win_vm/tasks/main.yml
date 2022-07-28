@@ -46,11 +46,21 @@
   delegate_to: localhost
   register: windows_vm
 
-- name: Run powershell command to pertain windows VM IP address
-  win_shell: |
-    Get-NetIPAddress
-  delegate_to: wintest.iisl.lab
-  register: vm_info
+- name: Gather vmware host facts
+  community.vmware.vmware_host_facts:
+    hostname: '{{ vm_name }}.iisl.lab'
+    username: Administrator
+    password: Windowspass1!
+  register: host_facts
+  delegate_to: '{{ vm_name }}.iisl.lab'
+
+- debug:
+    msg: "{{ host_facts }}"
+#- name: Run powershell command to pertain windows VM IP address
+#  win_shell: |
+#    Get-NetIPAddress
+#  delegate_to: wintest.iisl.lab
+#  register: vm_info
 
 #- name: Run powershell command to pertain windows VM IP address
 #  ansible.windows.win_shell: ipconfig
