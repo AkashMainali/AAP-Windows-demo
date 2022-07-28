@@ -47,14 +47,11 @@
   register: windows_vm
 
 - name: Gather vmware host facts
-  vmware_guest_info:
+  community.vmware.vmware_host_facts:
     hostname: cmrv-vc01.crucible.iisl.com
     username: bmuggalla@CRUCIBLE.iisl.com
     password: Temp!234
-    datacenter: "Plainview"
-    name: ansible_windows_bhanu
-    validate_certs: no
-    schema: "vsphere"
+    esxi_hostname: '{{ vm_name }}.iisl.lab'
   register: host_facts
   delegate_to: localhost
 
