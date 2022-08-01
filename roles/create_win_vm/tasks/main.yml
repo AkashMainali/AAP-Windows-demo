@@ -45,6 +45,8 @@
     wait_for_customization: yes
   delegate_to: localhost
   register: windows_vm
+  poll: 0
+  async: 1000
 
 - name: Gather vmware host facts
   vmware_guest_info:
