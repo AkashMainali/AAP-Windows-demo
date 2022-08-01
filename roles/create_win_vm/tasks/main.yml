@@ -43,7 +43,7 @@
   delegate_to: localhost
   register: windows_vm
   poll: 10
-  async: 300
+  async: 9000
 
 - debug:
     msg: "{{ windows_vm }}"
