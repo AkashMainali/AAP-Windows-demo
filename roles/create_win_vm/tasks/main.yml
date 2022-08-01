@@ -30,7 +30,6 @@
       hostname: '{{ vm_name }}.iisl.lab'
       dns_servers:
         - 192.168.2.201
-      autologon: yes
       dns_suffix:
         - "crucible.iisl.lab"
         - "iisl.lab"
