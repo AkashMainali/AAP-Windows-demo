@@ -50,9 +50,9 @@
 - debug:
     msg: "{{ windows_vm }}"
 
-- name: debug ip address of vm created
-  set_fact:
-    windows_vm_ip: "{{ windows_vm.instance.hw_eth0.ipaddresses[0] }}"
+# - name: debug ip address of vm created
+#   set_fact:
+#     windows_vm_ip: "{{ windows_vm.instance.hw_eth0.ipaddresses[0] }}"
 
 - name: Displaying success message
   debug:
