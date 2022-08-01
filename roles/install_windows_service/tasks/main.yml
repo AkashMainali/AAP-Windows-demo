@@ -21,3 +21,7 @@
 - name: Display final message
   debug:
     msg: "Windows Services have been installed"
+
+- name: Install a Services
+  ansible.windows.win_service:
+  
