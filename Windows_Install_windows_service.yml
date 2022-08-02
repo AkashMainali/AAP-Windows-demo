@@ -1,9 +1,21 @@
 ---
-- hosts: all
+- hosts: localhost
   gather_facts: no
-  become_user: yes
   tasks:
+  - name: Create in memory inventory with created VM
+    add_host:
+#      name: "{{ windows_hostname }}"
+      name: "{{ windows_ip_address }}"
+      groups: windows_server
+      ansible_user: ansible
 
-   - name: Include role to install windows service
-     include_role:
+- hosts: windows_server
+  gather_facts: no
+  tasks:
+    - name: Get the hostname
+      debug:
+        msg: "Target machine is: {{ inventory_hostname }}" 
+    
+    - name: Create the user and associated directory
+      include_role:
         name: install_windows_service
