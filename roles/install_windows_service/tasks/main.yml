@@ -1,15 +1,15 @@
 ---
-- name: Install windows Features (Windows File Server)
+- name: Install IIS Web-Server with sub features and management tools
   ansible.windows.win_feature:
-    name: "{{ item }}"
-    include_management_tools: yes
-    include_sub_features: yes
+    name: Web-Server
     state: present
-  loop:
-    #  - Web-Server
-     - Remote-Desktop-services
-- name: Restart the server
-  win_reboot:
+    include_sub_features: yes
+    include_management_tools: yes
+  register: win_feature
+
+- name: Reboot if installing Web-Server feature requires it
+  ansible.windows.win_reboot:
+  when: win_feature.reboot_required
 
 # One way to ensure the system is reliable, is to set WinRM to a delayed startup
 - name: Ensure WinRM starts when the system has settled and is ready to work reliably
