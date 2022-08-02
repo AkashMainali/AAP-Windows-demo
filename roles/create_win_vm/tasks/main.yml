@@ -26,17 +26,6 @@
         domain: "iisl.lab"
         dns_servers:
           - 192.168.2.201
-    customization:
-      hostname: '{{ vm_name }}.iisl.lab'
-      dns_servers:
-        - 192.168.2.201
-      dns_suffix:
-        - "crucible.iisl.lab"
-        - "iisl.lab"
-      domain: 'iisl.lab'
-      state: started
-      runonce:
-        - powershell.exe -ExecutionPolicy Unrestricted -File C:\Windows\Temp\ConfigureRemotingForAnsible.ps1 -ForceNewSSLCert -EnableCredSSP
   delegate_to: localhost
   register: windows_vm
   poll: 10
