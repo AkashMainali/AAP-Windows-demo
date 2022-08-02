@@ -6,8 +6,8 @@
     include_sub_features: yes
     state: present
   loop:
-     - Web-Server
-     - Remote-Desktop-ervices
+    #  - Web-Server
+     - Remote-Desktop-services
 - name: Restart the server
   win_reboot:
 
