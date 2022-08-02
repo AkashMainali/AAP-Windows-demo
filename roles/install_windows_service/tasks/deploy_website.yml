@@ -3,7 +3,7 @@
 - name: Copy the website files and folders
   win_copy:
     src: romofyi-html
-    dest: C:\sites\romofyi-html
+    dest: C:\sites
 
 - name: Remove Default Web Site
   community.windows.win_iis_website:
