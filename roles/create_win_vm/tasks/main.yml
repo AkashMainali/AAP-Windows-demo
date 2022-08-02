@@ -10,40 +10,40 @@
     windows_template: "windows2019_template"
   when: vm_template == "Windows_2019"
 
-# - name: Provision Windows machine
-#   vmware_guest:
-#     folder: "RHEL-Automation"
-#     template: "{{ windows_template }}"
-#     validate_certs: no
-#     name: "{{ vm_name }}"
-#     state: poweredon
-#     cluster: "RHEL-Automation"
-#     datastore: "Demo-Datastore01"
-#     datacenter: "Plainview"
-#     networks:
-#       - name: "RHEL-Automation - vLAN 102"
-#         type: dhcp
-#         domain: "iisl.lab"
-#         dns_servers:
-#           - 192.168.2.201
-#     customization:
-#       hostname: '{{ vm_name }}'
-#       dns_servers:
-#         - 192.168.2.201
-#       dns_suffix:
-#         - "crucible.iisl.lab"
-#         - "iisl.lab"
-#       domain: 'iisl.lab'
-#     wait_for_ip_address: true
-#     wait_for_customization: true
-#   delegate_to: localhost
-#   register: windows_vm
-#   poll: 10
-#   async: 9000
+- name: Provision Windows machine
+  vmware_guest:
+    folder: "RHEL-Automation"
+    template: "{{ windows_template }}"
+    validate_certs: no
+    name: "{{ vm_name }}"
+    state: poweredon
+    cluster: "RHEL-Automation"
+    datastore: "Demo-Datastore01"
+    datacenter: "Plainview"
+    networks:
+      - name: "RHEL-Automation - vLAN 102"
+        type: dhcp
+        domain: "iisl.lab"
+        dns_servers:
+          - 192.168.2.201
+    customization:
+      hostname: '{{ vm_name }}'
+      dns_servers:
+        - 192.168.2.201
+      dns_suffix:
+        - "crucible.iisl.lab"
+        - "iisl.lab"
+      domain: 'iisl.lab'
+    wait_for_ip_address: true
+    wait_for_customization: true
+  delegate_to: localhost
+  register: windows_vm
+  poll: 10
+  async: 9000
 
-# - name: Pause for 2 minutes
-#   ansible.builtin.pause:
-#     minutes: 1
+- name: Pause for 1 minutes
+  ansible.builtin.pause:
+    minutes: 1
 
 - name: Gather one specific VM
   community.vmware.vmware_guest_info:
