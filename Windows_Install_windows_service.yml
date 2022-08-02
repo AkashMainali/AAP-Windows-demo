@@ -1,25 +1,31 @@
 ---
 - hosts: localhost
   gather_facts: no
+  vars:
+    ansible_win_user: "{{ username }}"
+    ansible_win_password: "{{ password }}"
   tasks:
     - name: Create in memory inventory with created VM
       add_host:
   #      name: "{{ windows_hostname }}"
         name: "{{ windows_ip_address }}"
         groups: windows_server
-        ansible_user: "{{ username }}"
-        ansible_password: "{{ password }}"
+        ansible_user: "{{ ansible_win_user }}"
+        ansible_password: "{{ ansible_win_password }}"
         ansible_port: 5985
         ansible_connection: winrm
         ansible_winrm_transport: 'ntlm'
         ansible_winrm_server_cert_validation: ignore
+    - debug:
+       var: "{{ansible_win_user}}"
+    - debug:
+       var: "{{ansible_win_password}}"
 
 - hosts: windows_server
   gather_facts: no
   tasks:
-    - name: Get the hostname
-      debug:
-        msg: "Target machine is: {{ inventory_hostname }}" 
+    - name: Ping the Machine
+      win_ping: 
     
     - name: Create the user and associated directory
       include_role:
