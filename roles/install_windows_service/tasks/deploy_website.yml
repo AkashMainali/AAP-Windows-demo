@@ -1,0 +1,17 @@
+---
+# Start a website
+- name: Copy the website files and folders
+  win_copy:
+    src: romofyi-html
+    dest: C:\sites\romofyi-html
+
+- name: Deploy a new IIS site
+  community.windows.win_iis_website:
+    name: Romofyi
+    state: started
+    port: 80
+    ip: 127.0.0.1
+    hostname: acme.local
+    physical_path: C:\sites\romofyi-html
+    parameters: logfile.directory:C:\sites\logs
+  register: website
