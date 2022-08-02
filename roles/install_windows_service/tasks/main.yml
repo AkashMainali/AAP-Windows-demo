@@ -3,6 +3,7 @@
   ansible.windows.win_feature:
     name: "{{ item }}"
     include_management_tools: yes
+    include_sub_features: yes
     state: present
   loop:
      - Web-Server
