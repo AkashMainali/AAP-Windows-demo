@@ -14,7 +14,7 @@
   tasks:
     - name: Get the hostname
       debug:
-        msg: "Target machine is: {{ inventory_hostname }}" 
+        msg: "Target machine is: {{ inventory_hostname }}.iisl.lab" 
     
     - name: Create the user and associated directory
       include_role:
