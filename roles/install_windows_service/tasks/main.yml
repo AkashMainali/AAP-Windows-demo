@@ -8,8 +8,8 @@
   register: win_feature
 
 - name: Include task to Launch the website
-  include_tasks: deploy_website
-  
+  include_tasks: deploy_website.yml
+
 - name: Reboot if installing Web-Server feature requires it
   ansible.windows.win_reboot:
   when: win_feature.reboot_required
