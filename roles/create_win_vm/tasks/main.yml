@@ -34,13 +34,14 @@
 #         - "crucible.iisl.lab"
 #         - "iisl.lab"
 #       domain: 'iisl.lab'
+#     wait_for_ipaddress: yes
 #   delegate_to: localhost
 #   register: windows_vm
 #   poll: 10
 #   async: 9000
 
 - name: Gather one specific VM
-  community.vmware.vmware_vm_info:
+  community.vmware.vmware_guest_info:
     validate_certs: false
     datacenter: "Plainview"
     name: "{{ vm_name }}"
