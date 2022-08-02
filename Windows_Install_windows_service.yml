@@ -2,12 +2,12 @@
 - hosts: localhost
   gather_facts: no
   tasks:
-  - name: Create in memory inventory with created VM
-    add_host:
-#      name: "{{ windows_hostname }}"
-      name: "{{ windows_ip_address }}"
-      groups: windows_server
-      ansible_user: ansible
+    - name: Create in memory inventory with created VM
+      add_host:
+  #      name: "{{ windows_hostname }}"
+        name: "{{ windows_ip_address }}"
+        groups: windows_server
+        ansible_user: ansible
 
 - hosts: windows_server
   gather_facts: no
