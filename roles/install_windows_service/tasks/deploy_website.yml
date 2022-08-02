@@ -16,7 +16,7 @@
     state: started
     port: 80
     hostname: "{{ windows_hostname }}"
-    physical_path: C:\sites\romofyi-html\index.html
+    physical_path: C:\sites\romofyi-html
     parameters: logfile.directory:C:\sites\logs
   register: website
 
