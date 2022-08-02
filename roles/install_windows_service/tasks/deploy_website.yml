@@ -5,9 +5,14 @@
     src: romofyi-html
     dest: C:\sites\romofyi-html
 
+- name: Remove Default Web Site
+  community.windows.win_iis_website:
+    name: "Default Web Site"
+    state: absent
+    
 - name: Deploy a new IIS site
   community.windows.win_iis_website:
-    name: Romofyi
+    name: Default Web Site
     state: started
     port: 80
     ip: 127.0.0.1
@@ -16,7 +21,3 @@
     parameters: logfile.directory:C:\sites\logs
   register: website
 
-- name: Remove Default Web Site
-  community.windows.win_iis_website:
-    name: "Default Web Site"
-    state: absent
