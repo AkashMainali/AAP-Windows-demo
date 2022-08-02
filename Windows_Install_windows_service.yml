@@ -16,11 +16,7 @@
         ansible_connection: winrm
         ansible_winrm_transport: 'ntlm'
         ansible_winrm_server_cert_validation: ignore
-    - debug:
-       var: "{{ansible_win_user}}"
-    - debug:
-       var: "{{ansible_win_password}}"
-
+        
 - hosts: windows_server
   gather_facts: no
   tasks:
