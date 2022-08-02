@@ -41,7 +41,9 @@
 
 - name: Gather one specific VM
   community.vmware.vmware_vm_info:
-    vm_name: "{{ vm_name }}"
+    validate_certs: false
+    datacenter: "Plainview"
+    name: "{{ vm_name }}"
   register: vm_info
 
 - debug:
