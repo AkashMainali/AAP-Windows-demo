@@ -32,4 +32,4 @@
   set_stats:
     data:
       windows_ip: "{{ windows_ip_address }}"
-      windows_hostname: "{{ vm_name }}.iisl.lab"
+      windows_hostname: "{{windows_hostname}}"
