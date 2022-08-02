@@ -16,8 +16,7 @@
     state: started
     port: 80
     ip: 127.0.0.1
-    hostname: acme.local
-    physical_path: C:\sites\romofyi-html
+    physical_path: C:\sites\romofyi-html\index.html
     parameters: logfile.directory:C:\sites\logs
   register: website
 
