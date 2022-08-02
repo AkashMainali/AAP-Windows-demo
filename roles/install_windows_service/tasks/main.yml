@@ -2,9 +2,8 @@
 - name: Install windows Features (Windows File Server)
   ansible.windows.win_feature:
     name:
-     - FS-Resource-Manager
-     - FS-NFS-Service
-     - File-Services
+     - Web-Server
+     - Remote-Desktop-ervices
     include_management_tools: yes
     state: present
 
