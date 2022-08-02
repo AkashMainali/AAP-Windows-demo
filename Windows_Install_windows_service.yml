@@ -7,6 +7,8 @@
   #      name: "{{ windows_hostname }}"
         name: "{{ windows_ip_address }}"
         groups: windows_server
+        ansible_user: "{{ username }}"
+        ansible_password: "{{ password }}"
         ansible_port: 5985
         ansible_connection: winrm
         ansible_winrm_transport: 'ntlm'
