@@ -7,7 +7,10 @@
   #      name: "{{ windows_hostname }}"
         name: "{{ windows_ip_address }}"
         groups: windows_server
-        ansible_user: ansible
+        ansible_port: 5985
+        ansible_connection: winrm
+        ansible_winrm_transport: 'ntlm'
+        ansible_winrm_server_cert_validation: ignore
 
 - hosts: windows_server
   gather_facts: no
