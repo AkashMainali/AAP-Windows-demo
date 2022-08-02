@@ -43,7 +43,7 @@
 
 - name: Pause for 2 minutes
   ansible.builtin.pause:
-    minues: 2
+    minutes: 2
 
 - name: Gather one specific VM
   community.vmware.vmware_guest_info:
