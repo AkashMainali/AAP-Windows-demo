@@ -38,8 +38,6 @@
     wait_for_customization: true
   delegate_to: localhost
   register: windows_vm
-  poll: 10
-  async: 9000
 
 - name: Pause for 1 minutes
   ansible.builtin.pause:
