@@ -2,7 +2,6 @@
 - name: Install windows Features (Windows File Server)
   ansible.windows.win_feature:
     name:
-     - Failover-Clustering
      - FS-Resource-Manager
      - FS-NFS-Service
      - File-Services
