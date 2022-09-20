@@ -52,9 +52,6 @@
     name: "{{ vm_name }}"
   register: vm_info
 
-- debug:
-    msg: "{{ vm_info }}"
-
 - name: debug ip address of vm created
   set_fact:
     windows_vm_ip: "{{ vm_info.instance.ipv4 }}"
