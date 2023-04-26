@@ -42,6 +42,8 @@
         - "crucible.iisl.lab"
         - "iisl.lab"
       domain: 'iisl.lab'
+      runonce:
+            - powershell.exe -ExecutionPolicy Unrestricted -File C:\Windows\Temp\ConfigureRemotingForAnsible.ps1 -ForceNewSSLCert -EnableCredSSP
     wait_for_ip_address: true
     wait_for_customization: true
   delegate_to: localhost
