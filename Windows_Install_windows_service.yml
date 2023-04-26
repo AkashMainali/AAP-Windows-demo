@@ -7,7 +7,7 @@
   tasks:
     - name: Create in memory inventory with created VM
       add_host:
-        name: "{{ windows_hostname }}"
+        name: "{{ vm_ip }}"
         groups: windows_server
         ansible_user: '{{ ansible_win_user }}'
         ansible_hostname: "{{ windows_hostname }}"
@@ -16,7 +16,6 @@
         ansible_winrm_transport: 'ntlm'
         ansible_winrm_server_cert_validation: ignore
         ansible_become: false
-      no_log: true
 
 - hosts: windows_server
   gather_facts: no
