@@ -51,20 +51,20 @@
   poll: 10
   async: 9000
 
-# - name: Pause for 1 minutes
-#   ansible.builtin.pause:
-#     minutes: 1
+- name: Pause for 1 minutes
+  ansible.builtin.pause:
+    minutes: 1
 
-# - name: Gather one specific VM
-#   community.vmware.vmware_guest_info:
-#     validate_certs: false
-#     datacenter: "Plainview"
-#     name: "{{ vm_name }}"
-#   register: vm_info
+- name: Gather one specific VM
+  community.vmware.vmware_guest_info:
+    validate_certs: false
+    datacenter: "Plainview"
+    name: "{{ vm_name }}"
+  register: vm_info
 
-# - name: debug ip address of vm created
-#   set_fact:
-#     windows_vm_ip: "{{ vm_info.instance.ipv4 }}"
+- name: debug ip address of vm created
+  set_fact:
+    windows_vm_ip: "{{ vm_info.instance.ipv4 }}"
 
 - name: Displaying success message
   debug:
@@ -73,5 +73,5 @@
 - name: Set stats for workflow template
   set_stats:
     data:
-      windows_ip_address: "{{ vm_ip }}"
+      windows_ip_address: "{{ windows_vm_ip }}"
       windows_hostname: "{{ vm_name }}.iisl.lab"
