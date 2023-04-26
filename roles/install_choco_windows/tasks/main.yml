@@ -1,7 +1,7 @@
 ---
 # tasks file for install_choco_windows
-# - name: Call task file to install chocolatey
-#   include_tasks: install_chocolatey.yml
+- name: Call task file to install chocolatey
+  include_tasks: install_chocolatey.yml
 
 # - name: Install package dependencies
 #   win_chocolatey:
