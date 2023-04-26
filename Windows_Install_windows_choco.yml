@@ -19,7 +19,7 @@
         ansible_winrm_server_cert_validation: ignore
       no_log: true
 
-- hosts:
+- hosts: windows_server
   gather_facts: no
   tasks:
     - name: Ping the Machine
