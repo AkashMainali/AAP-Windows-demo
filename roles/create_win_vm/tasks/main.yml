@@ -21,11 +21,21 @@
     datastore: "Demo-Datastore01"
     datacenter: "Plainview"
     networks:
+      # - name: "RHEL-Automation - vLAN 102"
+      #   ip: 192.162.2.202
+      #   domain: "iisl.lab"
+      #   dns_servers:
+      #     - 192.168.2.201
       - name: "RHEL-Automation - vLAN 102"
-        ip: 192.162.2.202
         domain: "iisl.lab"
+        type: static
+        ip: "{{ vm_ip }}"
         dns_servers:
           - 192.168.2.201
+        gateway:
+          - 192.168.2.1
+        netmask: 255.255.255.0
+        start_connected: true 
     customization:
       hostname: '{{ vm_name }}'
       dns_servers:
