@@ -22,7 +22,7 @@
     datacenter: "Plainview"
     networks:
       - name: "RHEL-Automation - vLAN 102"
-        type: dhcp
+        ip: 192.162.2.202
         domain: "iisl.lab"
         dns_servers:
           - 192.168.2.201
