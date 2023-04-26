@@ -9,14 +9,13 @@
       add_host:
         name: "{{ windows_hostname }}"
         groups: windows_server
-        ansible_user: 'Administrator'
+        ansible_user: 'ansible'
         ansible_pass: 'Windowspass1!'
         ansible_hostname: "{{ windows_hostname }}"
         ansible_port: 5985
         ansible_connection: winrm
         ansible_winrm_transport: 'ntlm'
         ansible_winrm_server_cert_validation: ignore
-        ansible_become: false
       # no_log: true
 
 - hosts: windows_server
