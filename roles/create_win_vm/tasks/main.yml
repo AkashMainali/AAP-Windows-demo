@@ -1,17 +1,17 @@
 ---
 # tasks file for create_windows_vm
 - name: Select Windows 2016 template
-  set_fact:
+  ansible.builtin.set_fact:
     windows_template: "windows2016_template"
   when: vm_template == "Windows_2016"
 
 - name: Select Windows 2019 template
-  set_fact:
+  ansible.builtin.set_fact:
     windows_template: "windows2019_template"
   when: vm_template == "Windows_2019"
 
 - name: Provision Windows machine
-  vmware_guest:
+  community.vmware.vmware_guest:
     folder: "RHEL-Automation"
     template: "{{ windows_template }}"
     validate_certs: no
@@ -26,14 +26,6 @@
         domain: "iisl.lab"
         dns_servers:
           - 192.168.2.201
-      # - name: "RHEL-Automation - vLAN 102"
-      #   domain: "iisl.lab"
-      #   ip: "{{ vm_ip }}"
-      #   dns_servers:
-      #     - 192.168.2.201
-      #   gateway: 192.168.2.1
-      #   netmask: 255.255.255.0
-      #   start_connected: true 
     customization:
       hostname: '{{ vm_name }}'
       dns_servers:
@@ -63,15 +55,15 @@
   register: vm_info
 
 - name: debug ip address of vm created
-  set_fact:
+  ansible.builtin.set_fact:
     windows_vm_ip: "{{ vm_info.instance.ipv4 }}"
 
 - name: Displaying success message
-  debug:
+  ansible.builtin.debug:
     msg: "The VM Has been provisioned successfully"
 
 - name: Set stats for workflow template
-  set_stats:
+  ansible.builtin.set_stats:
     data:
       windows_ip_address: "{{ windows_vm_ip }}"
       windows_hostname: "{{ vm_name }}.iisl.lab"
