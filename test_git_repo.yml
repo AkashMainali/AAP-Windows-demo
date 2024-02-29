@@ -4,7 +4,7 @@
   gather_facts: no
   vars:
     repo_url: "https://github.com/AkashMainali/AAP-Windows-demo"
-    tmp_repo_directory: "/var/tmp/"
+    tmp_repo_directory: "/var/tmp/ansible/"
   tasks:
     - name: Generate report
       ansible.builtin.template:
@@ -41,7 +41,7 @@
     - name: "Add output directory to git"
       ansible.builtin.shell: |
         git config --global user.name "amainali"
-        git config --global user.email "amainali@schonfeld.com"
+        git config --global user.email "amainali@iisl.com"
         git add -A && git commit -m "RHAAP Job ID {{ tower_job_id }}: Automated Commit by Ansible  " && git push
       args:
         chdir: "{{ tmp_repo_directory }}"
