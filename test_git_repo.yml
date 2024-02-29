@@ -5,6 +5,11 @@
   collections:
     - lvrfrc87.git_acp
   tasks:
+    - name: Remove /var/tmp/ansible if already exists
+      ansible.builtin.file:
+        path: /var/tmp/ansible
+        state: absent
+        
     - name: Create /var/tmp/ansible directory
       ansible.builtin.file:
         path: /var/tmp/ansible
