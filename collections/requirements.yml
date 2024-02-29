@@ -3,7 +3,7 @@
 # this file assumes Automation Hub is the default source
 collections:
 
-- name: lvrfrc87.git_acp
+- name: git_acp
   version: 2.2.0
   source: https://galaxy.ansible.com
 
