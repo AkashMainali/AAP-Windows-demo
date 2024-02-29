@@ -47,7 +47,7 @@
         user: "{{ git_username }}"
         token: "{{ git_password }}"
         path: "/var/tmp/ansible/AAP-Windows-demo/"
-        branch: master
+        branch: main
         comment: " Add all the things."
         add: [ "." ]
         mode: https
