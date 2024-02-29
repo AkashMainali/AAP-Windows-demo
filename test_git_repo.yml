@@ -27,7 +27,6 @@
         repo: "{{ repo_url }}"
         dest: "{{ tmp_repo_directory }}"
         clone: yes
-        version: master
         update: yes
 
     - name: copy folders
