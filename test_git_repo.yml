@@ -2,6 +2,9 @@
 - name: Create a file and push it in GIT repo
   hosts: localhost
   gather_facts: no
+  vars:
+    repo_url: "https://github.com/AkashMainali/AAP-Windows-demo"
+    tmp_repo_directory: "/var/tmp/"
   tasks:
     - name: Generate report
       ansible.builtin.template:
@@ -9,15 +12,23 @@
         dest: /var/tmp/ansible_file
         mode: "0755"
 
-    - name: Clone Git repo
-      ansible.builtin.shell: |
-        "git clone {{ repo_url }}"
-        expect "Username for 'https://github.schonfeld.com':"
-        send "{{ git_username }}\n"
-        expect "Password for 'https://amainali@schonfeld.com@github.schonfeld.com':"
-        send "{{ git_password }}"
-      args:
-        chdir: "/var/tmp/"
+    # - name: Clone Git repo
+    #   ansible.builtin.shell: |
+    #     "git clone {{ repo_url }}"
+    #     expect "Username for 'https://github.schonfeld.com':"
+    #     send "{{ git_username }}\n"
+    #     expect "Password for 'https://amainali@schonfeld.com@github.schonfeld.com':"
+    #     send "{{ git_password }}"
+    #   args:
+    #     chdir: "/var/tmp/"
+
+    - name: Clone GIT Repository
+      ansible.builtin.git:
+        repo: "{{ repo_url }}"
+        dest: "{{ tmp_repo_directory }}"
+        clone: yes
+        version: master
+        update: yes
 
     - name: copy folders
       ansible.builtin.copy:
