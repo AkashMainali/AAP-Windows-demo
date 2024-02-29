@@ -99,11 +99,21 @@
       ansible.builtin.debug:
         msg: "{{ git_add_status.stdout_lines }}"
 
-    - name: Git Push
-      ansible.builtin.shell: |
-        git push
-      args:
-        chdir: "/var/tmp/ansible/AAP-Windows-demo/"
+    - name: HTTPS | push all changes
+      git_acp:
+        # mode: https
+        # user: "{{ git_username }}"
+        # token: "{{ git_password }}"
+        path: "/var/tmp/ansible/AAP-Windows-demo/"
+        comment: " Add all the things."
+        pull: true
+        url: "https://github.com/AkashMainali/AAP-Windows-demo.git"
+
+    # - name: Git Push
+    #   ansible.builtin.shell: |
+    #     git push
+    #   args:
+    #     chdir: "/var/tmp/ansible/AAP-Windows-demo/"
       # register: output
       # failed_when: >
       #   output.msg != "" and
