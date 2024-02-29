@@ -91,7 +91,7 @@
     # git config --global user.name "Akash Mainali"
     # git add -A && git commit -m "RHAAP: Automated Commit by Ansible  " && git push
       args:
-        chdir: "{{ tmp_repo_directory }}/AAP-Windows-demo/"
+        chdir: "/var/tmp/ansible//AAP-Windows-demo/"
       register: output
       failed_when: >
         output.msg != "" and
