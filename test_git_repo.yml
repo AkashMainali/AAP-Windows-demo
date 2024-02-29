@@ -9,7 +9,7 @@
       ansible.builtin.file:
         path: /var/tmp/ansible
         state: absent
-        
+
     - name: Create /var/tmp/ansible directory
       ansible.builtin.file:
         path: /var/tmp/ansible
@@ -34,7 +34,7 @@
     - name: Clone GIT Repository
       ansible.builtin.git:
         repo: "https://github.com/AkashMainali/AAP-Windows-demo.git"
-        dest: "/var/tmp/ansible"
+        dest: "/var/tmp/ansible/AAP-Windows-demo"
         clone: yes
         update: yes
 
