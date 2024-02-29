@@ -1,12 +1,9 @@
 ---
 - name: Create a file and push it in GIT repo
   hosts: localhost
-  gather_facts: no
+  gather_facts: false
   collections:
     - lvrfrc87.git_acp
-  vars:
-    repo_url: "https://github.com/AkashMainali/AAP-Windows-demo.git"
-    tmp_repo_directory: "/var/tmp/ansible"
   tasks:
     - name: Generate report
       ansible.builtin.template:
@@ -26,14 +23,14 @@
 
     - name: Clone GIT Repository
       ansible.builtin.git:
-        repo: "{{ repo_url }}"
-        dest: "{{ tmp_repo_directory }}"
+        repo: "https://github.com/AkashMainali/AAP-Windows-demo.git"
+        dest: "/var/tmp/ansible"
         clone: yes
         update: yes
 
     - name: copy folders
       ansible.builtin.copy:
-        dest: "{{ tmp_repo_directory }}/AAP-Windows-demo/"
+        dest: "/var/tmp/ansible/AAP-Windows-demo/ansible_file"
         src: "/var/tmp/ansible_file"
         force: true
 
