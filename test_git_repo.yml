@@ -94,19 +94,10 @@
       args:
         chdir: "/var/tmp/ansible/AAP-Windows-demo/"
       register: git_add_status
-      failed_when: >
-        output.msg != "" and
-        ("error" in output.msg or
-        "conflict" in output.msg or
-        "Errno" in output.msg or
-        "fatal" in output.msg or
-        (output.stdout != "" and
-        "nothing to commit, working tree clean" not in output.stdout) or
-        (output.stderr != ""))
 
     - name: Debug git add status
       ansible.builtin.debug:
-        msg: "{{ git_add_status.stdout }}"
+        msg: "{{ git_add_status.stdout_lines }}"
 
     - name: Git Push
       ansible.builtin.shell: |
