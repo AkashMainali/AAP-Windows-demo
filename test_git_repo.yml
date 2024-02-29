@@ -2,6 +2,8 @@
 - name: Create a file and push it in GIT repo
   hosts: localhost
   gather_facts: no
+  collections:
+    - lvrfrc87.git_acp
   vars:
     repo_url: "https://github.com/AkashMainali/AAP-Windows-demo.git"
     tmp_repo_directory: "/var/tmp/ansible/"
