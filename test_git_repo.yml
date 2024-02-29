@@ -39,8 +39,8 @@
 
     - name: HTTPS | push all changes
       git_acp:
-        user: "{{ git_user }}"
-        token: "{{ git_passwotd }}"
+        user: "{{ git_username }}"
+        token: "{{ git_password }}"
         path: /var/tmp/ansible/AAP-Windows-demo/
         branch: master
         comment: Add all the thinghs.
