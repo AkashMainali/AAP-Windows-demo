@@ -1,0 +1,46 @@
+---
+- name: Create a file and push it in GIT repo
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Generate report
+      ansible.builtin.template:
+        src: report.j2
+        dest: /var/tmp/ansible_file
+        mode: "0755"
+
+    - name: Clone Git repo
+      ansible.builtin.shell: |
+        "git clone {{ repo_url }}"
+        expect "Username for 'https://github.schonfeld.com':"
+        send "{{ git_username }}\n"
+        expect "Password for 'https://amainali@schonfeld.com@github.schonfeld.com':"
+        send "{{ git_password }}"
+      args:
+        chdir: "/var/tmp/"
+
+    - name: copy folders
+      ansible.builtin.copy:
+        dest: "{{ tmp_repo_directory }}"
+        src: "{{ item }}"
+        force: true
+      loop:
+        - "/var/tmp/ansible_file"
+
+    - name: "Add output directory to git"
+      ansible.builtin.shell: |
+        git config --global user.name "amainali"
+        git config --global user.email "amainali@schonfeld.com"
+        git add -A && git commit -m "RHAAP Job ID {{ tower_job_id }}: Automated Commit by Ansible  " && git push
+      args:
+        chdir: "{{ tmp_repo_directory }}"
+      register: output
+      failed_when: >
+        output.msg != "" and
+        ("error" in output.msg or
+        "conflict" in output.msg or
+        "Errno" in output.msg or
+        "fatal" in output.msg or
+        (output.stdout != "" and
+        "nothing to commit, working tree clean" not in output.stdout) or
+        (output.stderr != ""))

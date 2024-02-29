@@ -3,7 +3,7 @@
   become_user: yes
   tasks:
     - name: Removing git and notepad++
-      win_chocolatey:
+      ansible.windows.win_chocolatey:
         name:
         - git
         - notepadplusplus
