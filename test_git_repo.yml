@@ -3,7 +3,7 @@
   hosts: localhost
   gather_facts: no
   vars:
-    repo_url: "https://github.com/AkashMainali/AAP-Windows-demo"
+    repo_url: "https://github.com/AkashMainali/AAP-Windows-demo.git"
     tmp_repo_directory: "/var/tmp/ansible/"
   tasks:
     - name: Generate report
@@ -37,7 +37,7 @@
       loop:
         - "/var/tmp/ansible_file"
 
-    - name: "Add output directory to git"
+    - name: Push the Git repo
       ansible.builtin.shell: |
         git config --global user.email "amainali868@gmail.com"
         git config --global user.name "Akash Mainali"
