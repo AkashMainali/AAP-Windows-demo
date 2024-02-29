@@ -44,14 +44,14 @@
 
     - name: HTTPS | push all changes
       git_acp:
-        user: "{{ git_username }}"
-        token: "{{ git_password }}"
+        # user: "{{ git_username }}"
+        # token: "{{ git_password }}"
         path: "/var/tmp/ansible/AAP-Windows-demo/"
         branch: main
         comment: " Add all the things."
         add: [ "." ]
-        mode: https
-        url: "{{ repo_url }}"
+        # mode: https
+        url: "https://github.com/AkashMainali/AAP-Windows-demo.git"
 
     # - name: Push the Git repo
     #   ansible.builtin.shell: |
