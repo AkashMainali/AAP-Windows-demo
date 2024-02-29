@@ -39,7 +39,7 @@
 
 
     - name: HTTPS | push all changes
-      lvrfrc87.git_acp:
+      git_acp:
         user: "{{ git_user }}"
         token: "{{ git_passwotd }}"
         path: /var/tmp/ansible/AAP-Windows-demo/
