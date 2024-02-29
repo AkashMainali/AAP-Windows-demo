@@ -93,7 +93,7 @@
         git status
       args:
         chdir: "/var/tmp/ansible/AAP-Windows-demo/"
-      register: output
+      register: git_add_status
       failed_when: >
         output.msg != "" and
         ("error" in output.msg or
@@ -104,7 +104,9 @@
         "nothing to commit, working tree clean" not in output.stdout) or
         (output.stderr != ""))
 
-
+    - name: Debug git add status
+      ansible.builtin.debug:
+        msg: "{{ git_add_status.stdout }}"
 
     - name: Git Push
       ansible.builtin.shell: |
