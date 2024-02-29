@@ -10,11 +10,11 @@
         path: /var/tmp/ansible
         state: directory
 
-    - name: Generate report
-      ansible.builtin.template:
-        src: report.j2
-        dest: /var/tmp/ansible/ansible_file.txt
-        mode: "0755"
+    # - name: Generate report
+    #   ansible.builtin.template:
+    #     src: report.j2
+    #     dest: /var/tmp/ansible/ansible_file.txt
+    #     mode: "0755"
 
     # - name: Clone Git repo
     #   ansible.builtin.shell: |
@@ -33,11 +33,17 @@
         clone: yes
         update: yes
 
-    - name: Copy folders to Git repo
-      ansible.builtin.copy:
-        dest: "/var/tmp/ansible/AAP-Windows-demo/ansible_file.txt"
-        src: "/var/tmp/ansible/ansible_file.txt"
-        force: true
+    - name: Generate report in the cloned directory
+      ansible.builtin.template:
+        src: report.j2
+        dest: /var/tmp/ansible/AAP-Windows-demo/ansible_file.txt
+        mode: "0755"
+
+    # - name: Copy folders to Git repo
+    #   ansible.builtin.copy:
+    #     dest: "/var/tmp/ansible/AAP-Windows-demo/ansible_file.txt"
+    #     src: "/var/tmp/ansible/ansible_file.txt"
+    #     force: true
 
     # - name: Push the Git repo
     #   ansible.builtin.shell: |
