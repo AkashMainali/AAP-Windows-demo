@@ -31,12 +31,9 @@
 
     - name: copy folders
       ansible.builtin.copy:
-        dest: "{{ tmp_repo_directory }}"
-        src: "{{ item }}"
+        dest: "{{ tmp_repo_directory }}/AAP-Windows-demo/"
+        src: "/var/tmp/ansible_file"
         force: true
-      loop:
-        - "/var/tmp/ansible/AAP-Windows-demo/ansible_file"
-
 
     - name: HTTPS | push all changes
       git_acp:
