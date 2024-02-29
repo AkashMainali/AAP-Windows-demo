@@ -91,7 +91,7 @@
         git add -A
         git commit -m "RHAAP: Automated Commit by Ansible"
         git status
-      # git add -A && git commit -m "RHAAP: Automated Commit by Ansible  " && git push
+        git push
       args:
         chdir: "/var/tmp/ansible//AAP-Windows-demo/"
       register: output
