@@ -5,10 +5,15 @@
   collections:
     - lvrfrc87.git_acp
   tasks:
+    - name: Create /var/tmp/ansible directory
+      ansible.builtin.file:
+        path: /var/tmp/ansible
+        state: directory
+
     - name: Generate report
       ansible.builtin.template:
         src: report.j2
-        dest: /var/tmp/ansible_file
+        dest: /var/tmp/ansible/ansible_file
         mode: "0755"
 
     # - name: Clone Git repo
@@ -28,7 +33,7 @@
         clone: yes
         update: yes
 
-    - name: copy folders
+    - name: Copy folders to Git repo
       ansible.builtin.copy:
         dest: "/var/tmp/ansible/AAP-Windows-demo/ansible_file"
         src: "/var/tmp/ansible_file"
