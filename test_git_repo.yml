@@ -38,14 +38,19 @@
         force: true
 
     - name: HTTPS | push all changes
+      environment:
+        GIT_AUTHOR_NAME: "akashmainali"
+        GIT_AUTHOR_EMAIL: "amainali@iisl.com"
+        GIT_COMMITTER_NAME: "akashmainali"
+        GIT_COMMITTER_EMAIL: "amainali@iisl.com"
       git_acp:
-        user: "{{ git_username }}"
-        token: "{{ git_password }}"
-        path: /var/tmp/ansible/AAP-Windows-demo/
+        # user: "{{ git_username }}"
+        # token: "{{ git_password }}"
+        path: "/var/tmp/ansible/AAP-Windows-demo/"
         branch: master
-        comment: Add all the thinghs.
+        comment: " Add all the things."
         add: [ "." ]
-        mode: https
+        # mode: https
         url: "{{ repo_url }}"
 
     # - name: Push the Git repo
