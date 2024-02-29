@@ -88,9 +88,9 @@
       ansible.builtin.shell: |
         git config --global user.email "amainali868@gmail.com"
         git config --global user.name "Akash Mainali"
+        git status
       # git add -A
       # git commit -m "RHAAP: Automated Commit by Ansible"
-        git status
       args:
         chdir: "/var/tmp/ansible/AAP-Windows-demo/"
       register: git_add_status
