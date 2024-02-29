@@ -60,36 +60,36 @@
     #     git config --global user.email "amainali868@gmail.com"
     #     git config --global user.name "Akash Mainali"
 
-    - name: HTTPS | push all changes
-      environment:
-        GIT_AUTHOR_NAME: "akashmainali"
-        GIT_AUTHOR_EMAIL: "amainali868@gmail.com"
-        GIT_COMMITTER_NAME: "akashmainali"
-        GIT_COMMITTER_EMAIL: "amainali868@gmail.com"
-      git_acp:
-        # mode: https
-        # user: "{{ git_username }}"
-        # token: "{{ git_password }}"
-        path: "/var/tmp/ansible/AAP-Windows-demo/"
-        branch: main
-        comment: " Add all the things."
-        add: [ "." ]
-        url: "https://github.com/AkashMainali/AAP-Windows-demo.git"
+    # - name: HTTPS | push all changes
+    #   environment:
+    #     GIT_AUTHOR_NAME: "akashmainali"
+    #     GIT_AUTHOR_EMAIL: "amainali868@gmail.com"
+    #     GIT_COMMITTER_NAME: "akashmainali"
+    #     GIT_COMMITTER_EMAIL: "amainali868@gmail.com"
+    #   git_acp:
+    #     # mode: https
+    #     # user: "{{ git_username }}"
+    #     # token: "{{ git_password }}"
+    #     path: "/var/tmp/ansible/AAP-Windows-demo/"
+    #     branch: main
+    #     comment: " Add all the things."
+    #     add: [ "." ]
+    #     url: "https://github.com/AkashMainali/AAP-Windows-demo.git"
 
-    # - name: Push the Git repo
-    #   ansible.builtin.shell: |
-    #     git config --global user.email "amainali868@gmail.com"
-    #     git config --global user.name "Akash Mainali"
-    #     git add -A && git commit -m "RHAAP: Automated Commit by Ansible  " && git push
-    #   args:
-    #     chdir: "{{ tmp_repo_directory }}"
-    #   register: output
-    #   failed_when: >
-    #     output.msg != "" and
-    #     ("error" in output.msg or
-    #     "conflict" in output.msg or
-    #     "Errno" in output.msg or
-    #     "fatal" in output.msg or
-    #     (output.stdout != "" and
-    #     "nothing to commit, working tree clean" not in output.stdout) or
-    #     (output.stderr != ""))
+    - name: Push the Git repo
+      ansible.builtin.shell: |
+        git config --global user.email "amainali868@gmail.com"
+        git config --global user.name "Akash Mainali"
+        git add -A && git commit -m "RHAAP: Automated Commit by Ansible  " && git push
+      args:
+        chdir: "{{ tmp_repo_directory }}/AAP-Windows-demo/"
+      register: output
+      failed_when: >
+        output.msg != "" and
+        ("error" in output.msg or
+        "conflict" in output.msg or
+        "Errno" in output.msg or
+        "fatal" in output.msg or
+        (output.stdout != "" and
+        "nothing to commit, working tree clean" not in output.stdout) or
+        (output.stderr != ""))
