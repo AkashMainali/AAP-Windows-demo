@@ -7,7 +7,7 @@
       register: facts
 
     - name: Set facts to pass to next play
-      ansible.builtin.set_fact:
+      ansible.builtin.set_stats:
         facts_out: "{{ facts.ansible_facts }}"
 
 - name: Create a file and push it in GIT repo
