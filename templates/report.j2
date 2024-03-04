@@ -1,1 +1,1 @@
-"{{ facts_out | to_nice_json(ensure_ascii=False) }}"
+"{{ facts_out | to_nice_json(ensure_ascii=False) | regex_replace('\"|,', '')  }}"
