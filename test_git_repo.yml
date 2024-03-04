@@ -20,8 +20,10 @@
 #   collections:
 #     - lvrfrc87.git_acp
 #   tasks:
-    - name: Task to generate report
+
+    - name: Task to generate report and push it to GIT
       delegate_to: ansible-host-rhel9.iisl.lab
+      become: true
       block:
         - name: Debug the facts to store in report
           ansible.builtin.debug:
