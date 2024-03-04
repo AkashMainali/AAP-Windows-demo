@@ -1,5 +1,16 @@
 ---
 - name: Create a file and push it in GIT repo
+  hosts: localhost
+  tasks:
+    - name: Gather facts for localhost
+      ansible.builtin.setup:
+      register: facts
+
+    - name: Set facts to pass to next play
+      ansible.builtin.set_fact:
+        facts_out: "{{ facts.stdout_lines }}"
+
+- name: Create a file and push it in GIT repo
   hosts: all
   become: true
   become_user: root
@@ -7,6 +18,10 @@
   collections:
     - lvrfrc87.git_acp
   tasks:
+    - name: Debug the facts to store in report
+      ansible.builtin.debug:
+        msg: "{{ facts_out }}"
+
     - name: Remove /var/tmp/ansible directory if it already exists for a clean run
       ansible.builtin.file:
         path: /var/tmp/ansible
@@ -17,21 +32,6 @@
         path: /var/tmp/ansible
         state: directory
 
-    # - name: Generate report
-    #   ansible.builtin.template:
-    #     src: report.j2
-    #     dest: /var/tmp/ansible/ansible_file.txt
-    #     mode: "0755"
-
-    # - name: Clone Git repo
-    #   ansible.builtin.shell: |
-    #     "git clone {{ repo_url }}"
-    #     expect "Username for 'https://github.schonfeld.com':"
-    #     send "{{ git_username }}\n"
-    #     expect "Password for 'https://amainali@schonfeld.com@github.schonfeld.com':"
-    #     send "{{ git_password }}"
-    #   args:
-    #     chdir: "/var/tmp/"
     - name: Install GIT if not present
       ansible.builtin.dnf:
         name: git
@@ -50,58 +50,11 @@
         dest: /var/tmp/ansible/git-ansible-test/ansible_file.txt
         mode: "0755"
 
-    # - name: Copy folders to Git repo
-    #   ansible.builtin.copy:
-    #     dest: "/var/tmp/ansible/git-ansible-test/ansible_file.txt"
-    #     src: "/var/tmp/ansible/ansible_file.txt"
-    #     force: true
-
-    # - name: Push the Git repo
-    #   ansible.builtin.shell: |
-    #     git config --global user.email amainali868@gmail.com
-    #     git config --global user.name akashmainali
-    #     git add -A && git commit -m "RHAAP: Automated Commit by Ansible  " && git push
-    #   args:
-    #     chdir: "{{ tmp_repo_directory }}"
-    #   register: output
-    #   failed_when: >
-    #     output.msg != "" and
-    #     ("error" in output.msg or
-    #     "conflict" in output.msg or
-    #     "Errno" in output.msg or
-    #     "fatal" in output.msg or
-    #     (output.stdout != "" and
-    #     "nothing to commit, working tree clean" not in output.stdout) or
-    #     (output.stderr != ""))`
-
-    # - name: Entering git details
-    #   ansible.builtin.shell: |
-    #     git config --global user.email "amainali868@gmail.com"
-    #     git config --global user.name "Akash Mainali"
-
-    # - name: HTTPS | push all changes
-    #   environment:
-    #     GIT_AUTHOR_NAME: "akashmainali"
-    #     GIT_AUTHOR_EMAIL: "amainali868@gmail.com"
-    #     GIT_COMMITTER_NAME: "akashmainali"
-    #     GIT_COMMITTER_EMAIL: "amainali868@gmail.com"
-    #   git_acp:
-    #     # mode: https
-    #     # user: "{{ git_username }}"
-    #     # token: "{{ git_password }}"
-    #     path: "/var/tmp/ansible/AAP-Windows-demo/"
-    #     branch: main
-    #     comment: " Add all the things."
-    #     add: [ "." ]
-    #     url: "https://github.com/AkashMainali/AAP-Windows-demo.git"
-
     - name: Git Add and Git Commit
       ansible.builtin.shell: |
         git config --global user.email "amainali868@gmail.com"
         git config --global user.name "AkashMainali"
         git status
-      # git add -A
-      # git commit -m "RHAAP: Automated Commit by Ansible"
       args:
         chdir: "/var/tmp/ansible/git-ansible-test/"
       register: git_add_status
@@ -119,19 +72,3 @@
         comment: " Add all the things."
         pull: true
         url: "https://github.com/AkashMainali/git-ansible-test.git"
-
-    # - name: Git Push
-    #   ansible.builtin.shell: |
-    #     git push
-    #   args:
-    #     chdir: "/var/tmp/ansible/AAP-Windows-demo/"
-      # register: output
-      # failed_when: >
-      #   output.msg != "" and
-      #   ("error" in output.msg or
-      #   "conflict" in output.msg or
-      #   "Errno" in output.msg or
-      #   "fatal" in output.msg or
-      #   (output.stdout != "" and
-      #   "nothing to commit, working tree clean" not in output.stdout) or
-      #   (output.stderr != ""))
