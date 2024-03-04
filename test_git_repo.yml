@@ -118,7 +118,7 @@
         path: "/var/tmp/ansible/AAP-Windows-demo/"
         comment: " Add all the things."
         pull: true
-        url: "https://{{ git_username }}:{{ git_password }}@github.com/AkashMainali/AAP-Windows-demo.git"
+        url: "https://github.com/AkashMainali/AAP-Windows-demo.git"
 
     # - name: Git Push
     #   ansible.builtin.shell: |
