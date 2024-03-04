@@ -10,46 +10,42 @@
       ansible.builtin.set_stats:
         facts_out: "{{ facts.ansible_facts }}"
 
-- name: Create a file and push it in GIT repo
-  hosts: ansible-host
-  become: true
-  become_user: root
-  gather_facts: false
-  collections:
-    - lvrfrc87.git_acp
-  tasks:
+# - name: Create a file and push it in GIT repo
+#   hosts: ansible-host
+#   become: true
+#   become_user: root
+#   gather_facts: false
+#   collections:
+#     - lvrfrc87.git_acp
+#   tasks:
+    - name: Task to generate report
+      block:
     - name: Debug the facts to store in report
       ansible.builtin.debug:
         msg: "{{ facts_out }}"
-
     - name: Remove /var/tmp/ansible directory if it already exists for a clean run
       ansible.builtin.file:
         path: /var/tmp/ansible
         state: absent
-
     - name: Create /var/tmp/ansible directory
       ansible.builtin.file:
         path: /var/tmp/ansible
         state: directory
-
     - name: Install GIT if not present
       ansible.builtin.dnf:
         name: git
         state: latest
-    
     - name: Clone GIT Repository
       ansible.builtin.git:
         repo: "https://github.com/AkashMainali/git-ansible-test.git"
         dest: "/var/tmp/ansible/git-ansible-test"
         clone: true
         update: true
-
     - name: Generate report in the cloned directory
       ansible.builtin.template:
         src: report.j2
         dest: /var/tmp/ansible/git-ansible-test/ansible_file.txt
         mode: "0755"
-
     - name: Git Add and Git Commit
       ansible.builtin.shell: |
         git config --global user.email "amainali868@gmail.com"
@@ -58,11 +54,9 @@
       args:
         chdir: "/var/tmp/ansible/git-ansible-test/"
       register: git_add_status
-
     - name: Debug git add status
       ansible.builtin.debug:
         msg: "{{ git_add_status.stdout_lines }}"
-
     - name: HTTPS | push all changes
       git_acp:
         mode: https
@@ -72,3 +66,4 @@
         comment: " Add all the things."
         pull: true
         url: "https://github.com/AkashMainali/git-ansible-test.git"
+    delegate_to: ansible-host
