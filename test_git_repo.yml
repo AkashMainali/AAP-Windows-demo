@@ -98,7 +98,7 @@
     - name: Git Add and Git Commit
       ansible.builtin.shell: |
         git config --global user.email "amainali868@gmail.com"
-        git config --global user.name "Akash Mainali"
+        git config --global user.name "AkashMainali"
         git status
       # git add -A
       # git commit -m "RHAAP: Automated Commit by Ansible"
@@ -118,7 +118,7 @@
         path: "/var/tmp/ansible/AAP-Windows-demo/"
         comment: " Add all the things."
         pull: true
-        url: "https://github.com/AkashMainali/AAP-Windows-demo.git"
+        url: "https://{{ git_username }}:{{ git_password }}@github.com/AkashMainali/AAP-Windows-demo.git"
 
     # - name: Git Push
     #   ansible.builtin.shell: |
