@@ -1,6 +1,8 @@
 ---
 - name: Create a file and push it in GIT repo
   hosts: localhost
+  collections:
+    - lvrfrc87.git_acp
   tasks:
     - name: Gather facts for localhost
       ansible.builtin.setup:
