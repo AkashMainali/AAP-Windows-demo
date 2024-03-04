@@ -1,6 +1,7 @@
 ---
 - name: Create a file and push it in GIT repo
   hosts: localhost
+  gather_facts: false
   collections:
     - lvrfrc87.git_acp
   tasks:
@@ -12,18 +13,10 @@
       ansible.builtin.set_fact:
         facts_out: "{{ facts.ansible_facts }}"
 
-# - name: Create a file and push it in GIT repo
-#   hosts: ansible-host
-#   become: true
-#   become_user: root
-#   gather_facts: false
-#   collections:
-#     - lvrfrc87.git_acp
-#   tasks:
-
     - name: Task to generate report and push it to GIT
       delegate_to: ansible-host-rhel9.iisl.lab
       become: true
+      become_user: root
       block:
         - name: Debug the facts to store in report
           ansible.builtin.debug:
