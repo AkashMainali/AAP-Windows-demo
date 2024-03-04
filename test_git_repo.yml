@@ -1,6 +1,8 @@
 ---
 - name: Create a file and push it in GIT repo
   hosts: all
+  become: true
+  become_user: root
   gather_facts: false
   collections:
     - lvrfrc87.git_acp
