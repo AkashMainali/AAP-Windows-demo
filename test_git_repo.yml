@@ -66,4 +66,4 @@
             comment: " Add all the things."
             pull: true
             url: "https://github.com/AkashMainali/git-ansible-test.git"
-    delegate_to: ansible-host
+      delegate_to: ansible-host
