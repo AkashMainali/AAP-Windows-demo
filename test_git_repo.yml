@@ -8,7 +8,7 @@
 
     - name: Set facts to pass to next play
       ansible.builtin.set_fact:
-        facts_out: "{{ facts.stdout_lines }}"
+        facts_out: "{{ facts.ansible_facts }}"
 
 - name: Create a file and push it in GIT repo
   hosts: ansible-host
