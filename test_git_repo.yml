@@ -39,20 +39,20 @@
     
     - name: Clone GIT Repository
       ansible.builtin.git:
-        repo: "https://github.com/AkashMainali/AAP-Windows-demo.git"
-        dest: "/var/tmp/ansible/AAP-Windows-demo"
+        repo: "https://github.com/AkashMainali/git-ansible-test.git"
+        dest: "/var/tmp/ansible/git-ansible-test"
         clone: true
         update: true
 
     - name: Generate report in the cloned directory
       ansible.builtin.template:
         src: report.j2
-        dest: /var/tmp/ansible/AAP-Windows-demo/ansible_file.txt
+        dest: /var/tmp/ansible/git-ansible-test/ansible_file.txt
         mode: "0755"
 
     # - name: Copy folders to Git repo
     #   ansible.builtin.copy:
-    #     dest: "/var/tmp/ansible/AAP-Windows-demo/ansible_file.txt"
+    #     dest: "/var/tmp/ansible/git-ansible-test/ansible_file.txt"
     #     src: "/var/tmp/ansible/ansible_file.txt"
     #     force: true
 
@@ -103,7 +103,7 @@
       # git add -A
       # git commit -m "RHAAP: Automated Commit by Ansible"
       args:
-        chdir: "/var/tmp/ansible/AAP-Windows-demo/"
+        chdir: "/var/tmp/ansible/git-ansible-test/"
       register: git_add_status
 
     - name: Debug git add status
@@ -115,10 +115,10 @@
         mode: https
         user: "{{ git_username }}"
         token: "{{ git_password }}"
-        path: "/var/tmp/ansible/AAP-Windows-demo/"
+        path: "/var/tmp/ansible/git-ansible-test/"
         comment: " Add all the things."
         pull: true
-        url: "https://github.com/AkashMainali/AAP-Windows-demo.git"
+        url: "https://github.com/AkashMainali/git-ansible-test.git"
 
     # - name: Git Push
     #   ansible.builtin.shell: |
