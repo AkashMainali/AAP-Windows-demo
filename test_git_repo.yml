@@ -25,7 +25,11 @@
     #     send "{{ git_password }}"
     #   args:
     #     chdir: "/var/tmp/"
-
+    - name: Install GIT if not present
+      ansible.builtin.dnf:
+        name: git
+        state: latest
+    
     - name: Clone GIT Repository
       ansible.builtin.git:
         repo: "https://github.com/AkashMainali/AAP-Windows-demo.git"
