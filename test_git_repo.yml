@@ -11,7 +11,7 @@
         facts_out: "{{ facts.stdout_lines }}"
 
 - name: Create a file and push it in GIT repo
-  hosts: all
+  hosts: ansible-host
   become: true
   become_user: root
   gather_facts: false
