@@ -18,9 +18,6 @@
       become: true
       become_user: root
       block:
-        - name: Debug the facts to store in report
-          ansible.builtin.debug:
-            msg: "{{ facts_out }}"
         - name: Remove /var/tmp/ansible directory if it already exists for a clean run
           ansible.builtin.file:
             path: /var/tmp/ansible
