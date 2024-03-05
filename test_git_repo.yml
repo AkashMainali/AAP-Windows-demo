@@ -42,7 +42,7 @@
         - name: Generate report in the cloned directory
           ansible.builtin.template:
             src: report.j2
-            dest: /var/tmp/ansible/git-ansible-test/ansible_file.txt
+            dest: "/var/tmp/ansible/git-ansible-test/ansible_file_{{lookup('pipe', 'date +%Y%m%d')}}.txt"
             mode: "0755"
         - name: Git Add and Git Commit
           ansible.builtin.shell: |
@@ -64,4 +64,3 @@
             comment: " Add all the things."
             pull: true
             url: "https://github.com/AkashMainali/git-ansible-test.git"
-      
