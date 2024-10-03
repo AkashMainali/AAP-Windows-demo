@@ -4,9 +4,11 @@
   tasks:
    - name: Ping the windows server
      ansible.windows.win_ping:
+
    - name: Gather facts of the machine
      setup:
      register: machine_facts
+     
    - name: Display Machine facts
      debug:
        var: machine_facts
