@@ -1,0 +1,143 @@
+---
+- name: Create a Virtual Machine in Azure
+  hosts: localhost
+  tasks:
+
+    - name: Create resource group
+      azure.azcollection.azure_rm_resourcegroup:
+        name: "myResourceGroup"
+        location: "East US"
+
+    - name: Create virtual network
+      azure.azcollection.azure_rm_virtualnetwork:
+        resource_group: "myResourceGroup"
+        name: "myVnet"
+        address_prefixes: "10.0.0.0/16"
+        subnets:
+          - name: "default"
+            address_prefix: "10.0.0.0/24"
+
+    - name: Create public IP address
+      azure.azcollection.azure_rm_publicipaddress:
+        resource_group: "myResourceGroup"
+        name: "myPublicIP"
+        allocation_method: "Static"
+
+    - name: Create virtual machine
+      azure.azcollection.azure_rm_virtualmachine:
+        resource_group: "myResourceGroup"
+        name: "myVM"
+        vm_size: "Standard_DS1_v2"
+        admin_username: "azureuser"
+        admin_password: "Password1234!"
+        image:
+          offer: "UbuntuServer"
+          publisher: "Canonical"
+          sku: "18.04-LTS"
+          version: "latest"
+        network_interfaces:
+          - name: "myNIC"
+        location: "East US"
+
+#########################
+
+- name: Deploy Azure VM from ARM template
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Create resource group
+      azure.azcollection.azure_rm_resourcegroup:
+        name: myResourceGroup
+        location: eastus
+ 
+    - name: Deploy Azure VM using ARM template
+      azure.azcollection.azure_rm_deployment:
+        resource_group: myResourceGroup
+        location: eastus
+        deployment_mode: Complete
+        template: "{{ lookup('file', 'azure_vm_template.json') }}"
+        parameters:
+          adminUsername: { "value": "azureuser" }
+          adminPassword: { "value": "P@ssw0rd123!" }
+ 
+    - name: Display VM details
+      debug:
+        var: deployment
+
+# - name: Take Azure VM Snapshot
+#   hosts: localhost
+#   tasks:
+
+#     # 1. Stop the Azure VM (Optional)
+#     - name: Stop the VM before taking snapshot
+#       azure.azcollection.azure_rm_virtualmachine:
+#         resource_group: "myResourceGroup"
+#         name: "myVM"
+#         state: stopped  # Stopping the VM is optional
+#       register: vm_stopped
+
+#     # 2. Get the OS Disk from the VM
+#     - name: Get VM details to fetch OS disk ID
+#       azure.azcollection.azure_rm_virtualmachine_info:
+#         resource_group: "myResourceGroup"
+#         name: "myVM"
+#       register: vm_info
+
+#     # 3. Create a Snapshot from the OS Disk
+#     - name: Create a snapshot of the OS disk
+#       azure.azcollection.azure_rm_snapshot:
+#         resource_group: "myResourceGroup"
+#         name: "myVMSnapshot"
+#         location: "East US"
+#         create_option: "Copy"
+#         disk:
+#           id: "{{ vm_info.virtual_machines[0].storage_profile.os_disk.id }}"
+
+# ###################
+
+# - name: Create snapshots of all VM disks (OS and Data)
+#   hosts: localhost
+#   tasks:
+#     - name: Get VM details
+#       azure.azcollection.azure_rm_virtualmachine_info:
+#         resource_group: "myResourceGroup"
+#         name: "myVM"
+#       register: vm_info
+
+#     - name: Create a snapshot of the OS disk
+#       azure.azcollection.azure_rm_snapshot:
+#         resource_group: "myResourceGroup"
+#         name: "myOSDiskSnapshot"
+#         location: "East US"
+#         create_option: "Copy"
+#         disk:
+#           id: "{{ vm_info.virtual_machines[0].storage_profile.os_disk.id }}"
+
+#     - name: Create snapshots of data disks
+#       azure.azcollection.azure_rm_snapshot:
+#         loop: "{{ vm_info.virtual_machines[0].storage_profile.data_disks }}"
+#         loop_control:
+#           loop_var: data_disk
+#         resource_group: "myResourceGroup"
+#         name: "{{ 'DataDiskSnapshot_' + data_disk.name }}"
+#         location: "East US"
+#         create_option: "Copy"
+#         disk:
+#           id: "{{ data_disk.id }}"
+
+########################
+- name: Get details of the existing managed disk
+  azure.azcollection.azure_rm_manageddisk_info:
+    resource_group: your-resource-group
+    name: Windowsmanageddisk
+  register: existing_disk
+
+- name: Attach the existing disk to the Azure VM
+  azure.azcollection.azure_rm_virtualmachine:
+    resource_group: your-resource-group
+    name: your-vm-name
+    data_disks:
+      - managed_disk_id: "{{ existing_disk.managed_disks[0].id }}"
+        lun: 0  # Logical unit number for the disk
+        caching: ReadWrite
+        create_option: Attach
