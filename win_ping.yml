@@ -1,0 +1,8 @@
+---
+- name: Verify connectivity to Windows hosts
+  hosts: windows
+  gather_facts: false # Gathering facts can be resource intensive on older Windows machines
+
+  tasks:
+    - name: Ping the Windows servers
+      ansible.windows.win_ping:
